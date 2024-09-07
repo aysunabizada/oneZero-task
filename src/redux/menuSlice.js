@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
 export const dataMenu = createAsyncThunk("menu/get", async () => {
-    const res = await axios.get("http://localhost:5174/menu.json")
+    const res = await axios.get("./menu.json")
     return res.data
 })
 

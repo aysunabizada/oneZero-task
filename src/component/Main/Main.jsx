@@ -9,14 +9,12 @@ function Main() {
     const selectedCategory = useSelector((state) => state.menu.selectedCategory);
     const dispatch = useDispatch()
     const [isOpen, setIsOpen] = useState(false)
-    // console.log(menu);
 
     const filteredMenu = selectedCategory === 'all' ? menu
         : menu?.filter(category => category.name[0].value === selectedCategory);
 
     function getProduct(arg) {
         dispatch(setProductForModal(arg))
-        // console.log("canim cixdi isle de day", arg);
     }
 
     useEffect(() => {
