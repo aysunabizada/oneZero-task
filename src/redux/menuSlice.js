@@ -20,9 +20,6 @@ const menuSlice = createSlice({
         setProductForModal(state, action) {
             state.selectedProduct = action.payload;
         },
-        closeProductModal(state) {
-            state.selectedProduct = null;
-        },
     },
     extraReducers: (builder) => {
         builder
@@ -39,5 +36,5 @@ const menuSlice = createSlice({
     },
 });
 
-export const { setCategoryFilter, setProductForModal, closeProductModal } = menuSlice.actions;
+export const { setCategoryFilter, setProductForModal } = menuSlice.actions;
 export default menuSlice.reducer;
