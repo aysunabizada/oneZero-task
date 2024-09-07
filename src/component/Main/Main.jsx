@@ -9,6 +9,7 @@ function Main() {
     const selectedCategory = useSelector((state) => state.menu.selectedCategory);
     const dispatch = useDispatch()
     const [isOpen, setIsOpen] = useState(false)
+console.log(menu);
 
     const filteredMenu = selectedCategory === 'all' ? menu
         : menu?.filter(category => category.name[0].value === selectedCategory);
@@ -22,7 +23,7 @@ function Main() {
     }, [dispatch]);
 
     return (
-        <main>
+        <main className="container">
             <Modal isOpen={isOpen} setIsOpen={setIsOpen}/>
             <Filter />
             {
@@ -33,7 +34,7 @@ function Main() {
                             {category.menuItems.map((item, j) => (
                                 <div key={j} className="card" onClick={() => {getProduct(item), setIsOpen(!isOpen)}}>
                                     <span>₼ {item.rate.amount}</span>
-                                    <img src={item.coverImageSrc} alt={item.name[0].value} />
+                                    <img src={`http://localhost:5173/${item.coverImageSrc}.jpeg`} alt={item.name[0].value} />
                                     <p>{item.name[0].value}</p>
                                 </div>
                             ))}
