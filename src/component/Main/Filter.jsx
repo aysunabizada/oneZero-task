@@ -3,7 +3,7 @@ import { setCategoryFilter } from '../../redux/menuSlice';
 import { useState } from "react";
 
 function Filter() {
-    const menu = useSelector((state) => state.menu.data.data);
+    const menu = useSelector((state) => state.menu.data);
     const dispatch = useDispatch()
     const [selectedCategory, setSelectedCategory] = useState('all');
 

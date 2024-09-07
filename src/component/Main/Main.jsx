@@ -2,14 +2,13 @@ import Filter from "./Filter"
 import Modal from "./Modal"
 import { useDispatch, useSelector } from "react-redux"
 import { useEffect, useState } from "react"
-import { dataMenu ,setProductForModal} from "../../redux/menuSlice"
+import { dataMenu, setProductForModal } from "../../redux/menuSlice"
 
 function Main() {
-    const menu = useSelector((state) => state.menu?.data?.data?.categories);
+    const menu = useSelector((state) => state.menu?.data?.categories);
     const selectedCategory = useSelector((state) => state.menu.selectedCategory);
     const dispatch = useDispatch()
     const [isOpen, setIsOpen] = useState(false)
-console.log(menu);
 
     const filteredMenu = selectedCategory === 'all' ? menu
         : menu?.filter(category => category.name[0].value === selectedCategory);
@@ -24,7 +23,7 @@ console.log(menu);
 
     return (
         <main className="container">
-            <Modal isOpen={isOpen} setIsOpen={setIsOpen}/>
+            <Modal isOpen={isOpen} setIsOpen={setIsOpen} />
             <Filter />
             {
                 filteredMenu && filteredMenu?.map((category, i) => (
@@ -32,9 +31,15 @@ console.log(menu);
                         <h2 className='caption'>{category.name[0].value}</h2>
                         <div className="cards">
                             {category.menuItems.map((item, j) => (
-                                <div key={j} className="card" onClick={() => {getProduct(item), setIsOpen(!isOpen)}}>
+                                <div key={j} className="card" onClick={() => { getProduct(item), setIsOpen(!isOpen) }}>
                                     <span>₼ {item.rate.amount}</span>
-                                    <img src={`http://localhost:5173/${item.coverImageSrc}.jpeg`} alt={item.name[0].value} />
+                                    <img
+                                        src={`http://localhost:5000/${item.coverImageSrc}`}
+                                        onError={(e)=> {
+                                            e.target.src = "https://esquirescoffee.co.uk/wp-content/uploads/2021/09/mike-kenneally-tNALoIZhqVM-unsplash.jpg"
+                                        }}
+                                        alt={item.name[0].value}
+                                    />
                                     <p>{item.name[0].value}</p>
                                 </div>
                             ))}
